@@ -1,0 +1,12 @@
+{
+  "name": "premium-rework",
+  "version": "0.0.1",
+  "description": "Exploring technologies via rewriting Premium",
+  "scripts": {
+    "test": "blue-tape test.js",
+    "dev": "webpack-dev-server --devtool eval --hot --progress --colors"
+  },
+  "devDependencies": {
+    "webpack": "^1.12.9"
+  }
+}
