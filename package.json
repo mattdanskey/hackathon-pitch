@@ -4,9 +4,11 @@
   "description": "Exploring technologies via rewriting Premium",
   "scripts": {
     "test": "blue-tape test.js",
-    "dev": "webpack-dev-server --devtool eval --hot --progress --colors"
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base app"
   },
   "devDependencies": {
-    "webpack": "^1.12.9"
+    "html-webpack-plugin": "^1.7.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
   }
 }
