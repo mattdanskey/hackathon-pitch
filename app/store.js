@@ -39,3 +39,5 @@ store.dispatch({ type: 'INCREMENT' })
 // 2
 store.dispatch({ type: 'DECREMENT' })
 // 1
+
+export default store;

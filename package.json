@@ -4,7 +4,7 @@
   "description": "Exploring technologies via rewriting Premium",
   "scripts": {
     "test": "blue-tape test.js",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base app"
+    "dev": "webpack-dev-server --devtool eval --progress --colors"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "babel-core": "^6.3.15",
+    "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "react": "^0.14.3",
     "react-redux": "^4.0.0",

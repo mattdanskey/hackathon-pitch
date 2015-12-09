@@ -8,36 +8,42 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: PATHS.app,
+  entry: ['babel-polyfill', PATHS.app],
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
   },
   devServer: {
-   historyApiFallback: true,
-   hot: true,
-   inline: true,
-   progress: true,
+    contentBase: "app",
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
 
-   // display only errors to reduce the amount of output
-   stats: 'errors-only',
+    // display only errors to reduce the amount of output
+    stats: 'errors-only',
 
-   // parse host and port from env so this is easy
-   // to customize
-   host: 'localhost',
-   port: 8005
- },
- plugins: [
-   new webpack.HotModuleReplacementPlugin(),
-   new HtmlwebpackPlugin({
-    title: 'Premium app'
-  })
+    // parse host and port from env so this is easy
+    // to customize
+    host: 'localhost',
+    port: 8005
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlwebpackPlugin({
+      title: 'Premium app'
+    })
   ],
-  loaders: [
-    {
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel' // 'babel-loader' is also a legal name to reference
-    }
-  ]
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
+        query:{
+          presets: ['es2015']
+        }
+      }
+    ]
+  }
 };
