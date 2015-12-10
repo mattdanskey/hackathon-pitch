@@ -2,6 +2,13 @@ import React, { Component, PropTypes } from 'react'
 
 export default class SuperComp extends Component {
   render() {
-    return (<h1>We're alive!'</h1>)
+    return (
+      <div>
+        <h1>We are alive!</h1>
+        <marquee>
+          <h2>Marquees still work</h2>
+        </marquee>
+      </div>
+    )
   }
 }
