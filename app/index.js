@@ -1,15 +1,25 @@
 "use strict";
-var component = require('./component');
-var app = document.createElement('div');
+import React from 'react'
+import {render} from 'react-dom'
+
+import SuperComp from './component'
 require('./store.js')
 
+let rootElement = document.createElement('div')
+rootElement.id = "SuperAppReactRoot"
+document.body.appendChild(rootElement)
 
-document.body.appendChild(app);
-
-app.appendChild(component());
-let counter = 0;
-if(module.hot){
-  module.hot.accept('./component', function(){
-    let newApp = require('./component')()
-  });
+function makeHappen () {
+  render(<SuperComp/>, rootElement)
 }
+
+makeHappen();
+
+/* todo: make this work with actually loading new code
+   instead of just pretending to. */
+   
+// if(module.hot){
+//   module.hot.accept('./component', function(){
+//     makeHappen();
+//   });
+// }

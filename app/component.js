@@ -1,7 +1,7 @@
-module.exports = function () {
-  var element = document.createElement('h1');
+import React, { Component, PropTypes } from 'react'
 
-  element.innerHTML = 'Hi';
-
-  return element;
-};
+export default class SuperComp extends Component {
+  render() {
+    return (<h1>We're alive!'</h1>)
+  }
+}
