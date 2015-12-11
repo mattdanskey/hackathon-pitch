@@ -1,49 +1,46 @@
 'use strict'
-// react
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-// redux-devtools
 import { compose, createStore } from 'redux'
 import { connect, Provider } from 'react-redux'
 import { createDevTools, persistState } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 
 import SuperComp from './component'
+// import store from './store'
 
+const DevTools = createDevTools(
+  <LogMonitor />
+)
 
-// redux stuffs
-function counter(state = 0, action) {
+function counter(state = {count: 0}, action) {
   switch (action.type) {
   case 'INCREMENT':
-    return state + 1
+    return { count: state.count + 1 }
   case 'DECREMENT':
-    return state - 1
+    return { count: state.count - 1 }
   default:
     return state
   }
 }
 
-const store = createStore(counter)
-const DevTools = createDevTools(
-  <LogMonitor />
-)
-
-class Root extends Component {
-  render() {
-    return (
-        <div>
-          <SuperComp />
-          <DevTools />
-        </div>
+const finalCreateStore = compose(
+  // applyMiddleware(thunk),
+  DevTools.instrument(),
+  persistState(
+    window.location.href.match(
+      /[?&]debug_session=([^&]+)\b/
     )
-  }
-}
+  )
+)(createStore)
+
+let store = finalCreateStore(counter, {count:0})
 
 function select(state) {
-  return { count: state }
+  return { count: state.count }
 }
 
-let RootComponent = connect(select)(Root)
+let RootComponent = connect(select)(SuperComp)
 
 let rootElement = document.createElement('div')
 rootElement.id = 'SuperAppReactRoot'
@@ -51,9 +48,14 @@ document.body.appendChild(rootElement)
 
 function makeHappen() {
   render(
-    <Provider store={store}>
-      <RootComponent />
-    </Provider>,
+    <div>
+      <Provider store={store}>
+        <div>
+          <RootComponent />
+          <DevTools />
+        </div>
+      </Provider>
+    </div>,
     rootElement
   )
 }
