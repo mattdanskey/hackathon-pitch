@@ -11,7 +11,7 @@ import './assets/stylez.scss'
 
 
 function select(state) {
-  return { count: state.count }
+  return state
 }
 
 let RootComponent = connect(select)(Root)

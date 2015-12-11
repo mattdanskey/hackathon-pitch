@@ -1,8 +1,8 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 import { compose } from 'redux'
 import { persistState } from 'redux-devtools'
 import DevTools from './DevTools'
-import { counter } from './reducers'
+import reducers from './reducers'
 
 export default function() {
   const finalCreateStore = compose(
@@ -15,11 +15,11 @@ export default function() {
     )
   )(createStore)
 
-  let store = finalCreateStore(counter)
+  let store = finalCreateStore(reducers)
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextReducer = combineReducers(require('./reducers'))
+      const nextReducer = require('./reducers')
       store.replaceReducer(nextReducer)
     })
   }

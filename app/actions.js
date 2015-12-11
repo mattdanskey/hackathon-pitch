@@ -7,4 +7,8 @@ function decrement() {
   return { type: 'DECREMENT' }
 }
 
-export { increment, decrement }
+function submitOrder(address) {
+  return { type: 'SUBMIT_ORDER', address: address}
+}
+
+export { increment, decrement, submitOrder }
