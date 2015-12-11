@@ -16,7 +16,7 @@ function submitOrder(address) {
 }
 
 function validate(address) {
-  return !/box/.test(address)
+  return !/po box/i.test(address)
 }
 
 export { increment, decrement, submitOrder }
