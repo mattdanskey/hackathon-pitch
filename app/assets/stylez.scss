@@ -1,3 +1,26 @@
 body {
   background-color: #ddd;
+  color: #444;
+}
+
+.container {
+  font-size: 40px;
+  background-color: #eee;
+  margin-left: 20px;
+  width: 60%;
+  input {
+    height: 35px;
+    font-size: 35px;
+  }
+  button {
+    height: 40px;
+    font-size: 35px;
+    margin-left: 10px;
+    background-color: lightblue;
+    color: black;
+  }
+}
+
+.errors {
+  color: red;
 }

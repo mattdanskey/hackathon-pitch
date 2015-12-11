@@ -1,17 +1,6 @@
 'use strict'
 import { combineReducers } from 'redux'
 
-function counter(state = {count: 0}, action) {
-  switch (action.type) {
-  case 'INCREMENT':
-    return { count: state.count + 2 }
-  case 'DECREMENT':
-    return { count: state.count - 3 }
-  default:
-    return state
-  }
-}
-
 function cart(state = {address: 'address 123'}, action) {
   switch (action.type) {
   case 'SUBMIT_ORDER':
@@ -21,10 +10,21 @@ function cart(state = {address: 'address 123'}, action) {
   }
 }
 
+function errors(state = ['error'], action) {
+  switch (action.type) {
+  case 'ADD_ERROR':
+    return [...state, action.error]
+  case 'CLEAR':
+    return []
+  default:
+    return state
+  }
+}
+
 const reducers = combineReducers(
   {
-    counter,
-    cart
+    cart,
+    errors
   })
 
 export default reducers
