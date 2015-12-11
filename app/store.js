@@ -1,33 +1,27 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import { compose } from 'redux'
 import { persistState } from 'redux-devtools'
 import DevTools from './DevTools'
+import { counter } from './reducers'
 
-function counter(state = {count: 0}, action) {
-  switch (action.type) {
-  case 'INCREMENT':
-    return { count: state.count + 1 }
-  case 'DECREMENT':
-    return { count: state.count - 1 }
-  default:
-    return state
-  }
-}
-
-const finalCreateStore = compose(
-  // applyMiddleware(thunk),
-  DevTools.instrument(),
-  persistState(
-    window.location.href.match(
-      /[?&]debug_session=([^&]+)\b/
+export default function() {
+  const finalCreateStore = compose(
+    // applyMiddleware(thunk),
+    DevTools.instrument(),
+    persistState(
+      window.location.href.match(
+        /[?&]debug_session=([^&]+)\b/
+      )
     )
-  )
-)(createStore)
+  )(createStore)
 
-let store = finalCreateStore(counter)
+  let store = finalCreateStore(counter)
 
-store.subscribe(() => // todo: understand why it logs every second
-  console.log(store.getState())
-)
-
-export default store
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      const nextReducer = combineReducers(require('./reducers'))
+      store.replaceReducer(nextReducer)
+    })
+  }
+  return store
+}

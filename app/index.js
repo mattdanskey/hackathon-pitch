@@ -7,7 +7,7 @@ import { createDevTools, persistState } from 'redux-devtools'
 
 import DevTools from './DevTools'
 import Root from './component'
-import store from './store'
+import storeFactory from './store'
 
 function select(state) {
   return { count: state.count }
@@ -19,6 +19,7 @@ let rootElement = document.createElement('div')
 rootElement.id = 'SuperAppReactRoot'
 document.body.appendChild(rootElement)
 
+let store = storeFactory()
 function init() {
   render(
     <div>

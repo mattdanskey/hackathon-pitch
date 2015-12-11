@@ -3,4 +3,8 @@ function increment() {
   return { type: 'INCREMENT' }
 }
 
-export { increment }
+function decrement() {
+  return { type: 'DECREMENT' }
+}
+
+export { increment, decrement }
