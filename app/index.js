@@ -5,12 +5,15 @@ import { compose, createStore } from 'redux'
 import { connect, Provider } from 'react-redux'
 import { createDevTools, persistState } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
+import DockMonitor from 'redux-devtools-dock-monitor'
 
 import SuperComp from './component'
 // import store from './store'
 
 const DevTools = createDevTools(
-  <LogMonitor />
+  <DockMonitor toggleVisibilityKey='H' changePositionKey='Q'>
+    <LogMonitor />
+  </DockMonitor>
 )
 
 function counter(state = {count: 0}, action) {
