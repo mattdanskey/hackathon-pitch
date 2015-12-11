@@ -13,8 +13,6 @@ export default class SuperComp extends Component {
         </marquee>
         <button onClick={() => dispatch(incrementa())}>Press me!</button>
         <div>{count}</div>
-        <br/>
-        <br/>
       </div>
     )
   }

@@ -4,13 +4,10 @@ import { render } from 'react-dom'
 import { compose, createStore } from 'redux'
 import { connect, Provider } from 'react-redux'
 import { createDevTools, persistState } from 'redux-devtools'
+
 import DevTools from './DevTools'
-
-
-import SuperComp from './component'
+import Root from './component'
 // import store from './store'
-
-
 
 function counter(state = {count: 0}, action) {
   switch (action.type) {
@@ -39,7 +36,7 @@ function select(state) {
   return { count: state.count }
 }
 
-let RootComponent = connect(select)(SuperComp)
+let RootComponent = connect(select)(Root)
 
 let rootElement = document.createElement('div')
 rootElement.id = 'SuperAppReactRoot'
