@@ -9,6 +9,7 @@ import { createDevTools, persistState } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 
 import SuperComp from './component'
+import './assets/stylez.scss'
 
 
 // redux stuffs
