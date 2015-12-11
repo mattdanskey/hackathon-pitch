@@ -37,7 +37,7 @@ const finalCreateStore = compose(
   )
 )(createStore)
 
-let store = finalCreateStore(counter, {count:0})
+let store = finalCreateStore(counter)
 
 function select(state) {
   return { count: state.count }
