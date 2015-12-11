@@ -7,30 +7,7 @@ import { createDevTools, persistState } from 'redux-devtools'
 
 import DevTools from './DevTools'
 import Root from './component'
-// import store from './store'
-
-function counter(state = {count: 0}, action) {
-  switch (action.type) {
-  case 'INCREMENT':
-    return { count: state.count + 1 }
-  case 'DECREMENT':
-    return { count: state.count - 1 }
-  default:
-    return state
-  }
-}
-
-const finalCreateStore = compose(
-  // applyMiddleware(thunk),
-  DevTools.instrument(),
-  persistState(
-    window.location.href.match(
-      /[?&]debug_session=([^&]+)\b/
-    )
-  )
-)(createStore)
-
-let store = finalCreateStore(counter)
+import store from './store'
 
 function select(state) {
   return { count: state.count }
@@ -42,7 +19,7 @@ let rootElement = document.createElement('div')
 rootElement.id = 'SuperAppReactRoot'
 document.body.appendChild(rootElement)
 
-function makeHappen() {
+function init() {
   render(
     <div>
       <Provider store={store}>
@@ -56,13 +33,4 @@ function makeHappen() {
   )
 }
 
-makeHappen()
-
-/* todo: make this work with actually loading new code
-   instead of just pretending to. */
-
-// if(module.hot){
-//   module.hot.accept('./component', function(){
-//     makeHappen();
-//   });
-// }
+init()
