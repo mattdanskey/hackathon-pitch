@@ -4,10 +4,11 @@ import { render } from 'react-dom'
 import { compose, createStore } from 'redux'
 import { connect, Provider } from 'react-redux'
 import { createDevTools, persistState } from 'redux-devtools'
-
 import DevTools from './DevTools'
 import Root from './component'
 import storeFactory from './store'
+import './assets/stylez.scss'
+
 
 function select(state) {
   return { count: state.count }
