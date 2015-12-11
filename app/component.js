@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import incrementa from './actions'
+import { increment } from './actions'
 
 export default class SuperComp extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class SuperComp extends Component {
         <marquee>
           <h2>Marquees still work</h2>
         </marquee>
-        <button onClick={() => dispatch(incrementa())}>Press me!</button>
+        <button onClick={() => dispatch(increment())}>Press me!</button>
         <div>{count}</div>
       </div>
     )

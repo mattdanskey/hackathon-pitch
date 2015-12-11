@@ -1,5 +1,6 @@
 'use strict'
-function incrementa() {
+function increment() {
   return { type: 'INCREMENT' }
 }
-export default incrementa
+
+export { increment }
