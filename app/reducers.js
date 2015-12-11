@@ -1,30 +1,20 @@
 'use strict'
-import { combineReducers } from 'redux'
+const initialState = {
+  address: 'address 123',
+  errors: []
+}
 
-function cart(state = {address: 'address 123'}, action) {
+function cart(state = initialState, action) {
   switch (action.type) {
   case 'SUBMIT_ORDER':
-    return { address: action.address }
-  default:
-    return state
-  }
-}
-
-function errors(state = ['error'], action) {
-  switch (action.type) {
+    return Object.assign({}, state, { address: action.address, errors: [] })
   case 'ADD_ERROR':
-    return [...state, action.error]
-  case 'CLEAR':
-    return []
+    return Object.assign({}, state, { errors: [...state, action.error] })
+  case 'CLEAR_ERRORS':
+    return Object.assign({}, state, { errors: []})
   default:
     return state
   }
 }
 
-const reducers = combineReducers(
-  {
-    cart,
-    errors
-  })
-
-export default reducers
+export default cart

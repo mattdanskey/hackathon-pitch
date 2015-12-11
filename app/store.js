@@ -4,6 +4,8 @@ import { persistState } from 'redux-devtools'
 import DevTools from './DevTools'
 import reducers from './reducers'
 
+console.log('iwjefijew', reducers)
+
 export default function() {
   const finalCreateStore = compose(
     // applyMiddleware(thunk),
@@ -19,7 +21,7 @@ export default function() {
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers')
+      const nextReducer = (require('./reducers'))
       store.replaceReducer(nextReducer)
     })
   }

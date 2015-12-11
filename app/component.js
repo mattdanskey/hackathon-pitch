@@ -4,12 +4,12 @@ import Billing from './Billing'
 import Errors from './Errors'
 
 
-export default class SuperComp extends Component {
+export default class App extends Component {
   render() {
-    const { cart, errors, dispatch } = this.props
+    const { address, errors, dispatch } = this.props
     return (
       <div className="container">
-        <Billing address={cart.address}
+        <Billing address={address}
                  onSubmitOrder={address => dispatch(submitOrder(address))}/>
         <Errors errors={errors}/>
       </div>
